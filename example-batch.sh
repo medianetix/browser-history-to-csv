@@ -7,7 +7,7 @@ mkdir -p $STORAGE
 
 # user1: firefox and chrome
 python3 ./history.py -d /home/user1/.mozilla/firefox/zqvfbcc9.default-release -p user1-
-python3 ./history.py -d /home/user1/.config/google-chrome/Default -p user1
+python3 ./history.py -d /home/user1/.config/google-chrome/Default -p user1-
 
 # user2: firefox
 python3 ./history.py -d /home/user2/.mozilla/firefox/l4xwhv3z.default-release -p user2-
