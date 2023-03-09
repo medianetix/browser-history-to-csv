@@ -27,3 +27,8 @@ Creates CSV files for Firefox and Chrome browser history (tested under Linux, ma
 `python history.py -d /home/jdoe/.config/google-chrome/Default -b chrome`
 
 This will copy the chrome sqlite file "History" to /tmp/jdoe-History and create a jdoe-chrome-history.csv in /tmp
+
+## Multiuser usage 
+You can use a batch file to process multiple users in one call. For example if you need stats for multiple users on a laptop.
+
+See: example-batch.sh
