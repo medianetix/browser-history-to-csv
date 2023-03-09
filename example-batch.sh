@@ -1,5 +1,5 @@
 #!/bin/bash
-# execute as root, if accessing multiple users
+# execute as root, if accessing pathes outside your homedir
 
 # make dir for storage
 STORAGE="/home/admin/stats/`date +'%Y-%m-%d'`";
