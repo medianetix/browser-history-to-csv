@@ -23,5 +23,7 @@ Creates CSV files for Firefox and Chrome browser history (tested under Linux, ma
 - -t / --tmpdir = directory to write output files and copy the sqlite files (all with given prefix), default='/tmp'
 
 **Example usage:**
-- Chrome, user jdoe `python history.py -d /home/jdoe/.config/google-chrome/Default -b chrome`
+- Chrome, user jdoe:
+`python history.py -d /home/jdoe/.config/google-chrome/Default -b chrome`
+
 This will copy the chrome sqlite file "History" to /tmp/jdoe-History and create a jdoe-chrome-history.csv in /tmp
