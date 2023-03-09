@@ -1,6 +1,8 @@
 """
     store history for Firefox or Chrome 
     as CSV file in a temporary directory
+    
+    url: https://github.com/medianetix/browser-history-to-csv
 """
 
 from argparse import ArgumentParser
@@ -14,14 +16,16 @@ import csv
 def write_csvfile(csv_filename, rows):
 
     # write csv file 
-    with open(csv_filename, 'w') as fh:
-        writer = csv.writer(fh, delimiter='\t', lineterminator='\n')
-        writer.writerows(rows)
-
+    try:
+        with open(csv_filename, mode='w', encoding='utf-8') as fh:
+            writer = csv.writer(fh, delimiter='\t', lineterminator='\n')
+            writer.writerows(rows)
+    except:
+        print("Error writing file '{}'".format(csv_filename,))
 
 def chrome_history(cursor, filename):
 
-    print("- Chrome -")
+    print("--[ Chrome ]--")
     # chrome timestamp starts 1601-01-01, so we have to substract 11644473600 secs to get unixepoch !
     cursor.execute("""
     SELECT
@@ -46,7 +50,7 @@ def chrome_history(cursor, filename):
 
 def firefox_history(cursor, filename):
 
-    print("- Firefox -")
+    print("--[ Firefox ]--")
     # firefix timestamp starts 1970-01-01
     cursor.execute("""
         SELECT 
@@ -96,11 +100,18 @@ if __name__ == '__main__':
     # creating file path and copy database file to temp dir with prefix
     orig_dbfile = os.path.join(args.filedir, filename)
     dbfile = os.path.join(args.tmpdir, args.prefix + filename)
-    shutil.copy2(orig_dbfile, dbfile)
+    try:
+        shutil.copy2(orig_dbfile, dbfile)
+    except:
+        print("Cannot copy file: {}".format(orig_dbfile,))
 
     # open copied database (due to possible database lock) and create cursor
-    con = sqlite3.connect(dbfile)
-    cur = con.cursor()
+    try:
+        con = sqlite3.connect(dbfile)
+        cur = con.cursor()
+    except:
+        sys.exit("Cannot open database '{}'- ABORTING".format(dbfile,))
+
     csv_filename = os.path.join(args.tmpdir, args.prefix + args.browser + '-history.csv')
 
     # query history and build csv file
