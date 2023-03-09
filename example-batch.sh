@@ -16,7 +16,9 @@ python3 ./history.py -b firefox -d /home/user2/.mozilla/firefox/l4xwhv3z.default
 python3 ./history.py -b chrome -d /home/user3/.config/google-chrome/Default -p user3-
 
 # copy creates and copied files to storage dir
-cp /tmp/*.csv "$STORAGE/"
-cp /tmp/*.sqlite "$STORAGE/"
+cp /tmp/user1-* "$STORAGE/"
+cp /tmp/user2-* "$STORAGE/"
+cp /tmp/user3-* "$STORAGE/"
+
 
 echo "*** all done ***"
